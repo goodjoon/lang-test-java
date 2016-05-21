@@ -1,0 +1,81 @@
+task hello << {
+	println '안녕하십니까 Gradle 공부중입니다'
+}
+
+task upper << {
+	String someString = 'mY_nAmE'
+	println "Original: " + someString
+	println "Upper Case: " + someString.toUpperCase()
+}
+
+task count << {
+	4.times {
+		print "$it"
+	}
+}
+
+task intro(dependsOn: hello) << {
+	println "I'm Gradle"
+}
+
+task taskY << {
+	println "Task Y"
+}
+
+task taskX(dependsOn: taskY) << {
+	println "Task X"
+}
+
+// 다이내믹하게 TASK 를 생성하는 예제임.
+4.times { counter ->
+	task "task$counter" << {
+		println "I'm task number $counter"
+	}
+}
+
+// Dependecy 를 수정할 수도 있음
+task0.dependsOn task2, task3
+
+// 기존 Task 의 내용을 추가하는 방법
+hello << { // 제일 마지막에 밀어넣는다.
+	"이건 기존 헬로에 쪼매 추가된거입니다"
+}
+
+hello.doFirst { // 맨 앞에 밀어넣는다.
+	println "안녕 지구님하~"
+}
+
+hello.doLast { // 맨 마지막에 밀어넣는다
+	println "난 마지막에 헬로삼"
+}
+
+hello << { // 제일 마지막에 밀어넣는다.
+	println "마지막 다음에 밀어넣었쌈"
+}
+
+// Property 를 사용하기. ext.xxxx 형태로 property 를 선언하면 된다.
+// task TaskName {...} 요런 형식은 Configure Closure 를 선언하는거이고,
+// task TaskName << {...} 요건, task Action 을 지정하는 것이다.
+task myTask {
+	ext.myProperty = "myValue"
+	ext.yourProperty = "yourValue"
+}
+
+task printTaskProperties << {
+	println "오잉? : " + myTask.myProperty;
+}
+
+// Default Task 사용하기
+defaultTasks 'clean', 'run'
+
+task clean << {
+	println 'Default Cleaning';
+}
+
+task run << {
+	println 'Default Running';
+}
+
+task other << {
+	println "I'm not a default task";
+}

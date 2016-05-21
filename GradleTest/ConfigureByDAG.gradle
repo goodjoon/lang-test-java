@@ -1,0 +1,16 @@
+task distribution << {
+	println "$version 으로 ZIP 파일을 빌드합니다"
+}
+
+task release(dependsOn: 'distribution') {
+	println "릴리즈 합니다"
+}
+
+// 아래 처럼, Gradle 의 설정단계에 Listener 를 등록해 놓고 있다가 값들을 설정할 수도 있다.
+gradle.taskGraph.whenReady {taskGraph ->
+	if (taskGraph.hasTask(release))
+		version = '1.0'
+	else
+		version = '1.0-SNAPSHOT'
+	
+}

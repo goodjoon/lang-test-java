@@ -1,0 +1,8 @@
+src/quartz/first/QuartzTest.java:6:	Avoid unused imports such as 'org.quartz.SchedulerContext'
+src/quartz/lessons/lesson1/QuartzTest.java:6:	Avoid unused imports such as 'org.quartz.SchedulerContext'
+src/quartz/lessons/lesson3/DumbJob3.java:24:	Avoid unused local variables such as 'dataMap'.
+src/quartz/lessons/lesson3/QuartzTest.java:6:	Avoid unused imports such as 'org.quartz.SchedulerContext'
+src/quartz/lessons/lesson3/QuartzTest3.java:12:	Avoid unused local variables such as 'scheduler'.
+src/quartz/lessons/lesson3/QuartzTest3.java:14:	Avoid unused local variables such as 'job3'.
+src/string/SplitAndModify.java:9:	System.out.print is used
+src/string/SplitAndModify.java:12:	System.out.print is used
